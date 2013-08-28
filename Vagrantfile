@@ -7,24 +7,30 @@ Vagrant.configure("2") do |config|
     v.customize ["modifyvm", :id, "--memory", "256"]
   end
 
-  config.vm.define :seg1 do |seg1_config|
-    seg1_config.vm.network :private_network, ip: "192.168.2.11"
-    seg1_config.vm.hostname = "seg1"
+  config.vm.provision :puppet do |puppet|
+     puppet.manifests_path = "manifests"
+     puppet.manifest_file  = "base-hadoop.pp"
+     puppet.module_path = "modules"
+  end
+
+  config.vm.define :smdw do |smdw_config|
+    smdw_config.vm.network :private_network, ip: "192.168.2.11"
+    smdw_config.vm.hostname = "smdw"
   end
   
-  config.vm.define :seg2 do |seg2_config|
-    seg2_config.vm.network :private_network, ip: "192.168.2.12"
-    seg2_config.vm.hostname = "seg2"
+  config.vm.define :sdw1 do |sdw1_config|
+    sdw1_config.vm.network :private_network, ip: "192.168.2.12"
+    sdw1_config.vm.hostname = "sdw1"
   end
   
-  config.vm.define :seg3 do |seg3_config|
-    seg3_config.vm.network :private_network, ip: "192.168.2.13"
-    seg3_config.vm.hostname = "seg3"
+  config.vm.define :sdw2 do |sdw2_config|
+    sdw2_config.vm.network :private_network, ip: "192.168.2.13"
+    sdw2_config.vm.hostname = "sdw2"
   end
   
-   config.vm.define :master do |master_config|
-    master_config.vm.network :private_network, ip: "192.168.2.10"
-    master_config.vm.hostname = "master"
+   config.vm.define :mdw do |mdw_config|
+    mdw_config.vm.network :private_network, ip: "192.168.2.10"
+    mdw_config.vm.hostname = "mdw"
   end
 
 end
