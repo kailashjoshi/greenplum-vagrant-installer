@@ -2,7 +2,7 @@ class mdw-gp {
 
 file {
   "/tmp/greenplum-db-4.2.6.1-build-1-RHEL5-x86_64.zip":
-  source => "puppet:///modules/greenplum/greenplum-db-4.2.6.1-build-1-RHEL5-x86_64.zip",
+  source => "puppet:///modules/mdw-gp/greenplum-db-4.2.6.1-build-1-RHEL5-x86_64.zip",
   mode => 640,
   owner => root,
   group => root
