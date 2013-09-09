@@ -1,18 +1,19 @@
 class mdw-gp {
 
 file {
-  "/tmp/greenplum-db-4.2.6.1-build-1-RHEL5-x86_64.zip":
-  source => "puppet:///modules/mdw-gp/greenplum-db-4.2.6.1-build-1-RHEL5-x86_64.zip",
+  "/tmp/greenplum-db-4.2.6.1-build-1-RHEL5-x86_64.tar":
+  source => "puppet:///modules/mdw-gp/greenplum-db-4.2.6.1-build-1-RHEL5-x86_64.tar",
   mode => 640,
   owner => root,
   group => root
 }
 
-exec { "unzip_greenplum" :
-  command => "unzip /tmp/greenplum-db-4.2.6.1-build-1-RHEL5-x86_64.zip -d /opt",
+
+exec { "untar_greenplum" :
+  command => "tar xf /tmp/greenplum-db-4.2.6.1-build-1-RHEL5-x86_64.tar -C /opt",
   path => $path,
   creates => "/opt/greenplum-db-4.2.6.1-build-1-RHEL5-x86_64",
-  require => [ File["/tmp/greenplum-db-4.2.6.1-build-1-RHEL5-x86_64.zip"], Exec["apt-get install unzip"] ]
+  require => [ File["/tmp/greenplum-db-4.2.6.1-build-1-RHEL5-x86_64.tar"] ]
 }
 
 }

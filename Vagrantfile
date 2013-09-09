@@ -1,9 +1,9 @@
 Vagrant.configure("2") do |config|
   config.vm.define "Greenplum setup"
-  config.vm.box = "lucid64"
+  config.vm.box = "CentOS-6.3-x86_64-minimal"
   
   config.vm.provider :virtualbox do |v, override|
-    override.vm.box_url = "http://files.vagrantup.com/lucid64.box"
+    override.vm.box_url = "https://dl.dropbox.com/u/7225008/Vagrant/CentOS-6.3-x86_64-minimal.box"
     v.customize ["modifyvm", :id, "--memory", "256"]
   end
 
